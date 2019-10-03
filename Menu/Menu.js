@@ -38,7 +38,7 @@ let menuItems = [
 function createMenu(array){
   const menu = document.createElement('div');
   const menuList = document.createElement('ul');
-  const menuListItem = document.createElement('li');
+ 
 
   menu.appendChild(menuList);
   
@@ -47,9 +47,10 @@ function createMenu(array){
   menu.classList.add('menu');
 
   array.forEach((element) => {
+    const menuListItem = document.createElement('li');
     menuList.appendChild(menuListItem);
     menuListItem.textContent = element;
-    console.log(`Loading ${element}.`)
+   
   });
 
   const menuButton = document.querySelector('.menu-button');
