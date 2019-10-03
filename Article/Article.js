@@ -85,6 +85,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'This Test Article Contains Words',
+    date: 'Oct 2nd, 2019',
+    firstParagraph: 'The words, begin here. Its all about the cones! Its all about the cones! History began on July 4, 1776. Everything that happened before that was a mistake. Guys love it when you can show them you’re better than they are at something they love. Its all about the cones! Its all about the cones! I tried to make ramen in the coffee pot and broke everything. Just give me all the bacon and eggs you have. Wait…wait. I worry what you just heard was: Give me a lot of bacon and eggs. What I said was: Give me all the bacon and eggs you have. Do you understand?',
+
+    secondParagraph: 'I mean, that’s why people respect Hillary Clinton so much, because nobody takes a punch like her. She’s the strongest, smartest punching bag in the world. Calzones are pointless. They’re just pizza that’s harder to eat. No one likes them. Good day, sir. I tried to make ramen in the coffee pot and broke everything. Ann Perkins! Just give me all the bacon and eggs you have. Wait…wait. I worry what you just heard was: Give me a lot of bacon and eggs. What I said was: Give me all the bacon and eggs you have. Do you understand? If you got a problem with what I post, don\'t follow me. Its all about the cones! My sister is the woo-oorst!',
+
+    thirdParagraph: 'Pawnee is the opposite of hip. People in this town are just now getting into Nirvana. I don’t have the heart to tell them what’s gonna happen to Kurt Cobain in 1994. I didn’t really do Model United Nations in high school so… Oh wait, I SUPER-DID. Calzones are pointless. They’re just pizza that’s harder to eat. No one likes them. Good day, sir. What’s 5,000 times better than ‘Candle in the Wind’? History began on July 4, 1776. Everything that happened before that was a mistake. Pawnee is the fourth-most obese city in America. The kids here are beefy. They’re just husky, big-boned, chunk monsters. I call them like I see them. Pawnee is the opposite of hip. People in this town are just now getting into Nirvana. I don’t have the heart to tell them what’s gonna happen to Kurt Cobain in 1994. Time is money; Money is power; Power is pizza; Pizza is knowledge. Let’s go!'
   }
 ];
 
@@ -112,3 +121,57 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+const articles = document.querySelector('.articles');
+
+//iterating over the data and loading it into the articles using the createArticle() function
+data.forEach(dataElement => {
+  articles.appendChild(createArticle(dataElement.title, dataElement.date, dataElement.firstParagraph, dataElement.secondParagraph, dataElement.thirdParagraph))
+})
+
+//function to create each article element
+function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph){
+  //making DOM elements
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const articleContent1 = document.createElement('p');
+  const articleContent2 = document.createElement('p');
+  const articleContent3 = document.createElement('p');
+  const expandButton = document.createElement('span');
+  
+  //appending the children to parents
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(articleContent1);
+  article.appendChild(articleContent2);
+  article.appendChild(articleContent3);
+  article.appendChild(expandButton);
+
+  //adding classes to DOM elements
+  article.classList.add('article');
+  articleTitle.classList.add('title');
+  articleDate.classList.add('date');
+  articleContent1.classList.add('articleContent');
+  articleContent2.classList.add('articleContent');
+  articleContent3.classList.add('articleContent');
+  expandButton.classList.add('expandButton');
+
+  //adding the text from the data array above
+  expandButton.textContent = 'Read More';
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  articleContent1.textContent = firstParagraph;
+  articleContent2.textContent = secondParagraph;
+  articleContent3.textContent = thirdParagraph;
+
+  //creates functionality for the expand button to show/hide the article content
+  expandButton.addEventListener('click', () => {
+    article.classList.toggle('article-open')
+  })
+
+  return article;
+}
+
+
+
+
