@@ -123,11 +123,14 @@ const data = [
 */
 const articles = document.querySelector('.articles');
 
+//iterating over the data and loading it into the articles using the createArticle() function
 data.forEach(dataElement => {
   articles.appendChild(createArticle(dataElement.title, dataElement.date, dataElement.firstParagraph, dataElement.secondParagraph, dataElement.thirdParagraph))
 })
 
+//function to create each article element
 function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph){
+  //making DOM elements
   const article = document.createElement('div');
   const articleTitle = document.createElement('h2');
   const articleDate = document.createElement('p');
@@ -136,7 +139,7 @@ function createArticle(title, date, firstParagraph, secondParagraph, thirdParagr
   const articleContent3 = document.createElement('p');
   const expandButton = document.createElement('span');
   
-
+  //appending the children to parents
   article.appendChild(articleTitle);
   article.appendChild(articleDate);
   article.appendChild(articleContent1);
@@ -144,6 +147,7 @@ function createArticle(title, date, firstParagraph, secondParagraph, thirdParagr
   article.appendChild(articleContent3);
   article.appendChild(expandButton);
 
+  //adding classes to DOM elements
   article.classList.add('article');
   articleTitle.classList.add('title');
   articleDate.classList.add('date');
@@ -152,6 +156,7 @@ function createArticle(title, date, firstParagraph, secondParagraph, thirdParagr
   articleContent3.classList.add('articleContent');
   expandButton.classList.add('expandButton');
 
+  //adding the text from the data array above
   expandButton.textContent = 'Read More';
   articleTitle.textContent = title;
   articleDate.textContent = date;
@@ -159,6 +164,7 @@ function createArticle(title, date, firstParagraph, secondParagraph, thirdParagr
   articleContent2.textContent = secondParagraph;
   articleContent3.textContent = thirdParagraph;
 
+  //creates functionality for the expand button to show/hide the article content
   expandButton.addEventListener('click', () => {
     article.classList.toggle('article-open')
   })
